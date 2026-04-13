@@ -54,8 +54,10 @@ class ApiHelper(var context: Context) {
                 response: JSONObject?
             ) {
                 val message = response?.optString("message")
-                if (message == "Login success") {
-                    val user = response.optJSONObject("user")
+                val user = response?.optJSONObject("user")
+
+                if (user!=null) {
+
                     val username = user?.optString("username") ?: ""
                     val email = user?.optString("email") ?: ""
 
@@ -88,35 +90,35 @@ class ApiHelper(var context: Context) {
         })
     }
 
-fun loadProducts(url: String, recyclerView: RecyclerView, progressBar: ProgressBar? = null) {
-    progressBar?.visibility = View.VISIBLE
-    val layoutManager = LinearLayoutManager(context)
-    recyclerView.layoutManager = layoutManager
-    val client = AsyncHttpClient(true, 80, 443)
+    fun loadProducts(url: String, recyclerView: RecyclerView, progressBar: ProgressBar? = null) {
+        progressBar?.visibility = View.VISIBLE
+        val layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layoutManager
+        val client = AsyncHttpClient(true, 80, 443)
 
-    client.get(context, url, null, "application/json", object : JsonHttpResponseHandler() {
-        override fun onSuccess(
-            statusCode: Int,
-            headers: Array<out Header>?,
-            response: JSONArray
-        ) {
-            progressBar?.visibility = View.GONE
-            // val productList = ProductAdapter.fromJsonArray(response)
-            // val adapter = ProductAdapter(productList)
-            // recyclerView.adapter = adapter
-        }
+        client.get(context, url, null, "application/json", object : JsonHttpResponseHandler() {
+            override fun onSuccess(
+                statusCode: Int,
+                headers: Array<out Header>?,
+                response: JSONArray
+            ) {
+                progressBar?.visibility = View.GONE
+                // val productList = ProductAdapter.fromJsonArray(response)
+                // val adapter = ProductAdapter(productList)
+                // recyclerView.adapter = adapter
+            }
 
-        override fun onFailure(
-            statusCode: Int,
-            headers: Array<out Header>?,
-            responseString: String?,
-            throwable: Throwable?
-        ) {
-            progressBar?.visibility = View.GONE
-            Toast.makeText(context, "Failed to load products", Toast.LENGTH_SHORT).show()
-        }
-    })
-}
+            override fun onFailure(
+                statusCode: Int,
+                headers: Array<out Header>?,
+                responseString: String?,
+                throwable: Throwable?
+            ) {
+                progressBar?.visibility = View.GONE
+                Toast.makeText(context, "Failed to load products", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
     //GET
     fun get(api: String, callBack: CallBack) {
@@ -124,13 +126,13 @@ fun loadProducts(url: String, recyclerView: RecyclerView, progressBar: ProgressB
         //GET to API
         client.get(context, api, null, "application/json",
             object : JsonHttpResponseHandler() {
-             //When a JSOn array is Returned
+                //When a JSOn array is Returned
                 override fun onSuccess(
                     statusCode: Int,
                     headers: Array<out Header>?,
                     response: JSONArray
                 ) {
-                //Push the response to Callback Interface
+                    //Push the response to Callback Interface
                     callBack.onSuccess(response)
                 }
 
@@ -139,8 +141,8 @@ fun loadProducts(url: String, recyclerView: RecyclerView, progressBar: ProgressB
                     headers: Array<out Header>?,
                     response: JSONObject?
                 ) {
-                //Push the response to Callback Interface
-                callBack.onSuccess(response)
+                    //Push the response to Callback Interface
+                    callBack.onSuccess(response)
                 }
 
                 override fun onFailure(
@@ -191,7 +193,7 @@ fun loadProducts(url: String, recyclerView: RecyclerView, progressBar: ProgressB
 
     //DELETE
     fun delete(api: String, jsonData: JSONObject) {
-        Toast.makeText(context, "Please Wait for response", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Please Wait for response", Toast.LENGTH_SHORT).show()
         val client = AsyncHttpClient(true, 80, 443)
         val con_body = StringEntity(jsonData.toString())
         //DELETE to API
