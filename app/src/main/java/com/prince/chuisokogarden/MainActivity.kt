@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import  android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +43,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(signinintent)
             }
 
+            val progressbar=findViewById<ProgressBar>(R.id.progressbar)
+            val recyclerView=findViewById<RecyclerView>(R.id.recyvlerView)
 
+            val api="https://jpmurage.alwaysdata.net/api/getproductdetails"
+
+            val helper= ApiHelper(applicationContext)
+        helper.loadProducts(api,recyclerView,progressbar)
 
 
 

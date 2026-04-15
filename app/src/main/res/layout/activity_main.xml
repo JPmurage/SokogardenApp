@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#1B1A1A">
+    android:background="#425A5A">
 
     <TextView
         android:layout_width="match_parent"
@@ -48,5 +48,19 @@
         android:fontFamily="sans-serif-black"
         android:id="@+id/signin"
         />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"
+
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyvlerView"
+        tools:listitem="@layout/single_item"/>
 
 </LinearLayout>

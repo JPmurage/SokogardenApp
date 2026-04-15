@@ -26,26 +26,36 @@
    <EditText
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:inputType="text"
+       android:textColor="@color/black"
        android:hint="Enter your Email"
        android:padding="12dp"
        android:background="@drawable/edittext"
        style="@style/Widget.AppCompat.Spinner.Underlined"
        android:layout_margin="20dp"
        android:id="@+id/email"
+       android:drawableStart="@android:drawable/ic_dialog_email"
+       android:drawableTint="#673AB7"
        />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberPassword"
-        android:hint="Enter your Password"
-        android:background="@drawable/edittext"
-        android:padding="12dp"
-        style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_margin="20dp"
-        android:id="@+id/password"
-        />
+        app:passwordToggleEnabled="true"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:drawableStart="@android:drawable/ic_lock_lock"
+            android:drawableTint="#673AB7"
+            android:textColor="#673AB7"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:layout_width="match_parent"

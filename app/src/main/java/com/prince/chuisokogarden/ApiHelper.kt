@@ -103,10 +103,11 @@ class ApiHelper(var context: Context) {
                 response: JSONArray
             ) {
                 progressBar?.visibility = View.GONE
-                // val productList = ProductAdapter.fromJsonArray(response)
-                // val adapter = ProductAdapter(productList)
-                // recyclerView.adapter = adapter
+                 val productList = ProductAdapter.fromJsonArray(response)
+                 val adapter = ProductAdapter(productList)
+                 recyclerView.adapter = adapter
             }
+
 
             override fun onFailure(
                 statusCode: Int,
@@ -158,6 +159,8 @@ class ApiHelper(var context: Context) {
     }//END GET
 
 
+
+
     //PUT
     fun put(api: String, jsonData: JSONObject) {
         Toast.makeText(context, "Please Wait for response", Toast.LENGTH_LONG).show()
@@ -193,7 +196,7 @@ class ApiHelper(var context: Context) {
 
     //DELETE
     fun delete(api: String, jsonData: JSONObject) {
-        Toast.makeText(context, "Please Wait for response", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Please Wait for response", Toast.LENGTH_LONG).show()
         val client = AsyncHttpClient(true, 80, 443)
         val con_body = StringEntity(jsonData.toString())
         //DELETE to API
@@ -226,6 +229,7 @@ class ApiHelper(var context: Context) {
                 }
             })
     }//END DELETE
+
 
     //Interface to used by the GET function above.
     //All APis responses either JSON array [], JSON Object {}, String ""
