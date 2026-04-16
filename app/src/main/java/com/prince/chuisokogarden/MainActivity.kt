@@ -35,13 +35,13 @@ class MainActivity : AppCompatActivity() {
 
 //            Sign In intent
 
-             val signin=findViewById<Button>(R.id.signin)
-
-            signin.setOnClickListener {
-
-                val signinintent= Intent(this, SignIn::class.java)
-                startActivity(signinintent)
-            }
+//             val signin=findViewById<Button>(R.id.signin)
+//
+//            signin.setOnClickListener {
+//
+//                val signinintent= Intent(this, SignIn::class.java)
+//                startActivity(signinintent)
+//            }
 
             val progressbar=findViewById<ProgressBar>(R.id.progressbar)
             val recyclerView=findViewById<RecyclerView>(R.id.recyvlerView)
