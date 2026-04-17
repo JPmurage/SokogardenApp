@@ -33,6 +33,32 @@ class MainActivity : AppCompatActivity() {
                 startActivity(signupintent)
             }
 
+
+
+//        About button intent
+
+                val about= findViewById<Button>(R.id.aboutbtn)
+
+                about.setOnClickListener {
+
+                    val aboutIntent= Intent(this,About::class.java)
+                    startActivity(aboutIntent)
+                    finish()
+                }
+
+//        speech to text intent
+
+        val speechtotext= findViewById<Button>(R.id.speechtotext)
+
+        speechtotext.setOnClickListener {
+
+            val speechtotextintent= Intent(this, SpeechToTextActivity::class.java)
+            startActivity(speechtotextintent)
+            finish()
+
+        }
+
+
 //            Sign In intent
 
 //             val signin=findViewById<Button>(R.id.signin)

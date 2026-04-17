@@ -65,6 +65,7 @@ class ProductAdapter(private val productList: List<Product>) :
         }
     }
 
+
     override fun getItemCount(): Int = productList.size
    //Return all products Details as a LIST
     companion object {
